@@ -33,7 +33,7 @@ namespace day1
             foreach (var x in list)
             {
                 var remainder = targetYear - x;
-                foreach (var y in list)
+                foreach (var y in list.Where(t => t < remainder).ToList())
                 {
                     if (y == x)
                     {
