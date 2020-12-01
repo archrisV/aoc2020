@@ -13,7 +13,7 @@ namespace day1
                                                     .Select(x => Int32.Parse(x))
                                                     .ToList();
 
-        private static long SolutionPartOne(List<int> list)
+        public static long SolutionPartOne(List<int> list)
         {
             long target = 0;
             foreach (var x in list)
@@ -27,7 +27,7 @@ namespace day1
             return target;
         }
 
-        private static long SolutionPartTwo(List<int> list)
+        public static long SolutionPartTwo(List<int> list)
         {
             long target = 0;
             foreach (var x in list)
