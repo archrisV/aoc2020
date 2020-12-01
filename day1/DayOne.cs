@@ -19,10 +19,18 @@ namespace day1
             long target = 0;
             foreach (var x in list)
             {
-                if(list.Contains(targetYear - x))
+                var remainder = targetYear - x;
+                foreach (var y in list)
                 {
-                    target = (targetYear - x) * x;
-                    break;
+                    if (y == x)
+                    {
+                        continue;
+                    }
+                    if(list.Contains(remainder - y))
+                    {
+                        target = (remainder - y) * x * y;
+                        break;
+                    }
                 }
             }
             Console.WriteLine(target);
