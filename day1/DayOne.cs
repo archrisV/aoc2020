@@ -13,9 +13,22 @@ namespace day1
                                                     .Select(x => Int32.Parse(x))
                                                     .ToList();
 
-        public static void Main(string[] args)
+        private static long SolutionPartOne(List<int> list)
         {
-            var list = ParseInput();
+            long target = 0;
+            foreach (var x in list)
+            {
+                if (list.Contains(targetYear - x))
+                {
+                    target = (targetYear - x) * x;
+                    break;
+                }
+            }
+            return target;
+        }
+
+        private static long SolutionPartTwo(List<int> list)
+        {
             long target = 0;
             foreach (var x in list)
             {
@@ -26,14 +39,20 @@ namespace day1
                     {
                         continue;
                     }
-                    if(list.Contains(remainder - y))
+                    if (list.Contains(remainder - y))
                     {
                         target = (remainder - y) * x * y;
                         break;
                     }
                 }
             }
-            Console.WriteLine(target);
+            return target;
+        }
+        public static void Main(string[] args)
+        {
+            var list = ParseInput();
+            Console.WriteLine($"Solution for part 1: {SolutionPartOne(list)}");
+            Console.WriteLine($"Solution for part 2: {SolutionPartTwo(list)}");
         }
     }
 }
