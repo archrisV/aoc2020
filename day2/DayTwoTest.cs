@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using Xunit;
-namespace day1
+namespace day2
 {
-    public class DayOneTest
+    public class DayTwoTest
     {
         [Fact]
         public void Solution_Part_One_Provided_Test()
