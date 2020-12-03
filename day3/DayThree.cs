@@ -11,29 +11,32 @@ namespace day3
                                                     .Split("\n")
                                                     .ToList();
 
-        public static int SolutionPartOne(List<string> list, int right, int down)
-        {   
-            int trees = 0;
-            var mapWidth = list.First().Length;
-            for(var i = 0; i < list.Count; i += down)
-            {
-                if(list[i][i * right % mapWidth] == '#')
-                {
-                    ++trees;
-                }
-            }
-            return trees;
+        public static int SolutionPartOne(List<string> list, int right = 3, int down = 1)
+        {
+            return list
+                .Where((row, i) => i % down == 0 && row[(right * (i / down)) % row.Length] == '#')
+                .Count();
         }
 
-        /*public static int SolutionPartTwo(List<string> list)
+        public static double SolutionPartTwo(List<string> list)
         {
+            var pairs = new List<(int, int)>()
+            {
+                (1, 1),
+                (3, 1),
+                (5, 1),
+                (7, 1),
+                (1, 2)
+            };
+            return pairs.Select(x => SolutionPartOne(list, x.Item1, x.Item2))
+                        .Aggregate(1, (x, y) => x * y);
 
-        }*/
+        }
 
         public static void Main(string[] args)
         {
-            Console.WriteLine($"Part 1 solution: {SolutionPartOne(ParseInput(), 3, 1)}");
-            //Console.WriteLine($"Part 2 solution: {SolutionPartTwo(ParseInput())}");
+            Console.WriteLine($"Part 1 solution: {SolutionPartOne(ParseInput())}");
+            Console.WriteLine($"Part 2 solution: {SolutionPartTwo(ParseInput())}");
         }
     }
 }
