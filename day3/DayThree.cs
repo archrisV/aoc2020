@@ -11,9 +11,18 @@ namespace day3
                                                     .Split("\n")
                                                     .ToList();
 
-        public static int SolutionPartOne(List<string> list)
-        {
-            
+        public static int SolutionPartOne(List<string> list, int right, int down)
+        {   
+            int trees = 0;
+            var mapWidth = list.First().Length;
+            for(var i = 0; i < list.Count; i += down)
+            {
+                if(list[i][i * right % mapWidth] == '#')
+                {
+                    ++trees;
+                }
+            }
+            return trees;
         }
 
         /*public static int SolutionPartTwo(List<string> list)
@@ -21,10 +30,10 @@ namespace day3
 
         }*/
 
-        /*public static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine($"Part 1 solution: {SolutionPartOne(ParseInput())}");
-            Console.WriteLine($"Part 2 solution: {SolutionPartTwo(ParseInput())}");
-        }*/
+            Console.WriteLine($"Part 1 solution: {SolutionPartOne(ParseInput(), 3, 1)}");
+            //Console.WriteLine($"Part 2 solution: {SolutionPartTwo(ParseInput())}");
+        }
     }
 }
