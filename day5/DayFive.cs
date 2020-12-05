@@ -12,7 +12,7 @@ namespace day5
                                                     .Split("\r\n")
                                                     .ToList();
 
-        public static int SolutionPartOne(List<string> list)
+        public static List<int> SolutionPartOne(List<string> list)
         {
             var seatIDs = new List<int>();
             foreach (string boardingPass in list) 
@@ -30,11 +30,11 @@ namespace day5
                         case 'B':
                             minCol = (int)Math.Ceiling((decimal)(maxCol + minCol) / 2);
                             break;
-                        case 'R':
-                            minRow = (int)Math.Ceiling((decimal)(maxRow + minRow) / 2);
-                            break;
                         case 'L':
                             maxRow = (maxRow + minRow) / 2;
+                            break;
+                        case 'R':
+                            minRow = (int)Math.Ceiling((decimal)(maxRow + minRow) / 2);
                             break;
                         default:
                             throw new Exception($"Invalid tag in the boarding pass {boardingPass}");
@@ -42,18 +42,19 @@ namespace day5
                 }
                 seatIDs.Add(maxCol * 8 + maxRow);
             }
-            return seatIDs.Max();
+            return seatIDs;
         }
 
-        /*public static int SolutionPartTwo(List<string> list)
+        public static int SolutionPartTwo(List<int> list)
         {
+            return Enumerable.Range(list.Min(), list.Max()).Except(list.OrderBy(x => x).ToList()).First();
 
-        }*/
+        }
 
         public static void Main(string[] args)
         {
-            Console.WriteLine($"Part 1 solution: {SolutionPartOne(ParseInput())}");
-            //Console.WriteLine($"Part 2 solution: {SolutionPartTwo(ParseInput())}");
+            Console.WriteLine($"Part 1 solution: {SolutionPartOne(ParseInput()).Max()}");
+            Console.WriteLine($"Part 2 solution: {SolutionPartTwo(SolutionPartOne(ParseInput()))}");
         }
     }
 }

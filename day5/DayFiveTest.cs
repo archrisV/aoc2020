@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 namespace day5
 {
@@ -9,7 +10,7 @@ namespace day5
         {
             Assert.Equal(820, DayFive.SolutionPartOne(new List<string>() { "BFFFBBFRRR",
                                                                             "FFFBBBFRRR",
-                                                                            "BBFFBBFRLL"}));
+                                                                            "BBFFBBFRLL"}).Max());
         }
 
         [Fact]
@@ -17,7 +18,7 @@ namespace day5
         {
             Assert.Equal(820, DayFive.SolutionPartOne(new List<string>() { "BFFFBBFRRR",
                                                                             "FFFBBBFRRR",
-                                                                            "BBFFBBFRLL"}));
+                                                                            "BBFFBBFRLL"}).Max());
         }
     }
 }
