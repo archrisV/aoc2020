@@ -12,21 +12,21 @@ namespace day6
                                                     .Split("\r\n\r\n")
                                                     .ToList();
 
-        public static List<int> SolutionPartOne(List<string> list)
+        public static int SolutionPartOne(List<string> list)
         {
-            
+            var input = list.Select(x => x.Split("\r\n")).ToList();
+            return input.Sum(x => x.SelectMany(y => y).Distinct().Count());
         }
 
         /*public static int SolutionPartTwo(List<int> list)
         {
-            return Enumerable.Range(list.Min(), list.Max()).Except(list.OrderBy(x => x).ToList()).First();
 
         }*/
 
         public static void Main(string[] args)
         {
             Console.WriteLine($"Part 1 solution: {SolutionPartOne(ParseInput())}");
-            //Console.WriteLine($"Part 2 solution: {SolutionPartTwo(SolutionPartOne(ParseInput()))}");
+            //Console.WriteLine($"Part 2 solution: {SolutionPartTwo(ParseInput())}");
         }
     }
 }
