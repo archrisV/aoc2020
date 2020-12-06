@@ -14,19 +14,22 @@ namespace day6
 
         public static int SolutionPartOne(List<string> list)
         {
-            var input = list.Select(x => x.Split("\r\n")).ToList();
-            return input.Sum(x => x.SelectMany(y => y).Distinct().Count());
+            return list.Select(x => x.Split("\r\n"))
+                    .ToList()
+                    .Sum(x => x.SelectMany(y => y).Distinct().Count());
         }
 
-        /*public static int SolutionPartTwo(List<int> list)
+        public static int SolutionPartTwo(List<string> list)
         {
-
-        }*/
+            return list.Select(x => x.Split("\r\n"))
+                    .ToList()
+                    .Sum(x => x.First().Count(y => x.All(z => z.Contains(y))));
+        }
 
         public static void Main(string[] args)
         {
             Console.WriteLine($"Part 1 solution: {SolutionPartOne(ParseInput())}");
-            //Console.WriteLine($"Part 2 solution: {SolutionPartTwo(ParseInput())}");
+            Console.WriteLine($"Part 2 solution: {SolutionPartTwo(ParseInput())}");
         }
     }
 }
